@@ -1,0 +1,14 @@
+// VITYL Gossip Protocol - Conceptual Logic
+void startGhostNet() {
+  NearbyConnections().startAdvertising(
+    user, strategy, 
+    onConnectionInitiated: (id, info) {
+      // Automatic Handshake (No User Interaction)
+      NearbyConnections().acceptConnection(id);
+    },
+    onPayloadReceived: (id, payload) {
+      // The "Bucket Brigade" - Receive & Forward
+      forwardBioPing(payload); 
+    }
+  );
+}
